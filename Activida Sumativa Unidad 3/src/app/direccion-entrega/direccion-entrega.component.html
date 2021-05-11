@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <h1>Formulario de Envío</h1>
+    </div>
+    <div class="row"> 
+        <div class="form-group">
+            <form [formGroup] = "formulario" (ngSubmit)="agregar() ">
+                    <h4>Pais: </h4> 
+                    <select class="form-select" aria-label="Default select example" formControlName= "pais">
+                    <option value="Chile">Chile</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Perú">Perú</option>
+                    <option value="Bolivia">Bolivia</option>
+                    </select>
+                    <div *ngIf="pais?.invalid && (pais?.dirty || pais?.touched)" class="alert alert-danger">
+                    <p *ngIf="pais?.errors.required">Por favor ingrese un país </p>
+                    </div>
+                    <h4>Región: </h4> <input type="text" formControlName= "region" class="form-control" maxlength="30">
+                    <div *ngIf="region?.invalid && (region?.dirty ||region?.touched)" class="alert alert-danger">
+                        <p *ngIf="region?.errors.required">Por favor ingresar una región</p>
+                        <p *ngIf="region?.errors.minlength">Debe tener mínimo 3 caracteres</p>
+                        <p *ngIf="region?.errors.maxlength">Debe tener máximo 30 caracteres</p>
+                    </div>
+                    <h4>Ciudad: </h4> <input type="text" formControlName= "ciudad" class="form-control" maxlength="30" >
+                    <div *ngIf="ciudad?.invalid && (ciudad?.dirty || ciudad?.touched)" class="alert alert-danger">
+                        <p *ngIf="ciudad?.errors.required">Por favor ingresar una ciudad</p>
+                        <p *ngIf="ciudad?.errors.minlength">Debe tener mínimo 3 caracteres</p>
+                        <p *ngIf="ciudad?.errors.maxlength">Debe tener máximo 30 caracteres</p>
+                    </div>
+                    <h4>Comuna: </h4> <input type="text" formControlName= "comuna" class="form-control" maxlength="30" >
+                    <div *ngIf="comuna?.invalid && (calle?.dirty || calle?.touched)" class="alert alert-danger">
+                        <p *ngIf="comuna?.errors.required">Por favor ingresar una calle</p>
+                        <p *ngIf="comuna?.errors.minlength">Debe tener mínimo 5 caracteres</p>
+                        <p *ngIf="comuna?.errors.maxlength">Debe tener máximo 20 caracteres</p>
+                    </div>
+                    <h4>Calle: </h4> <input type="text" formControlName= "calle" class="form-control" maxlength="30" >
+                    <div *ngIf="calle?.invalid && (calle?.dirty || calle?.touched)" class="alert alert-danger">
+                        <p *ngIf="calle?.errors.required">Por favor ingresar una calle</p>
+                        <p *ngIf="calle?.errors.minlength">Debe tener mínimo 5 caracteres</p>
+                        <p *ngIf="calle?.errors.maxlength">Debe tener máximo 20 caracteres</p>
+                    </div>
+                    <h4>Número: </h4> <input type="number" formControlName= "numero" class="form-control" >
+                    <div *ngIf="numero?.invalid && (numero?.dirty || numero?.touched)" class="alert alert-danger">
+                        <p *ngIf="numero?.errors.required">Por favor ingresar un número</p>
+                    </div>
+                    <h4>Código Postal: </h4> <input type="number" formControlName= "cPostal" class="form-control" >
+                    <div *ngIf="cPostal?.invalid && (cPostal?.dirty || cPostal?.touched)" class="alert alert-danger">
+                        <p *ngIf="cPostal?.errors.required">Por favor ingresar un número</p>
+                    </div>
+
+                    <br>
+                    <hr>
+                    
+                    <br>
+                    <br>
+                    <div class="row">
+                        <button type="submit " class="btn btn-success">Guardar</button> 
+                        
+                    
+                    </div>
+                    <br><br>
+
+    
+            </form>
+
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row">
+        <h1>Formulario de Pago</h1>
+    </div>
+    <div class="row"> 
+        <div class="form-group">
+            <form [formGroup] = "formulario" (ngSubmit)="agregar()">
+                    <h4>Tipo de Tarjeta: </h4> 
+                    <select class="form-select" aria-label="Default select example" formControlName= "tipoTarjeta">
+                    <option value="debito">Débito</option>
+                    <option value="credito">Crédito</option>
+                    </select>
+                    <div *ngIf="tipoTarjeta?.invalid && (tipoTarjeta?.dirty || tipoTarjeta?.touched)" class="alert alert-danger">
+                    <p *ngIf="tipoTarjeta?.errors.required">Por favor ingrese tipo tarjeta </p>
+                    </div>
+                    <h4>Nombre de Titular: </h4> <input type="text" formControlName= "nombre" class="form-control" maxlength="50">
+                    <div *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)" class="alert alert-danger">
+                        <p *ngIf="nombre?.errors.required">Por favor ingresar un Nombre</p>
+                        <p *ngIf="nombre?.errors.minlength">Debe tener mínimo 10 caracteres</p>
+                        <p *ngIf="nombre?.errors.maxlength">Debe tener máximo 50 caracteres</p>
+                    </div>
+                    <h4>Número de Tarjeta: </h4> <input type="number" formControlName= "nTarjeta" class="form-control" maxlength="16" >
+                    <div *ngIf="nTarjeta?.invalid && (nTarjeta?.dirty || nTarjeta?.touched)" class="alert alert-danger">
+                        <p *ngIf="nTarjeta?.errors.required">Por favor ingresar un número de tarjeta</p>
+                        <p *ngIf="nTarjeta?.errors.minlength">Debe tener mínimo 16 caracteres</p>
+                        <p *ngIf="nTarjeta?.errors.maxlength">Debe tener máximo 16 caracteres</p>
+                    </div>
+                    <h4>Codigo de Seguridad: </h4> <input type="number" formControlName= "codSeguridad" class="form-control" maxlength="4" >
+                    <div *ngIf="codSeguridad?.invalid && (codSeguridad?.dirty || codSeguridad?.touched)" class="alert alert-danger">
+                        <p *ngIf="codSeguridad?.errors.required">Por favor ingresar un código de seguridad</p>
+                        <p *ngIf="codSeguridad?.errors.minlength">Debe tener mínimo 3 caracteres</p>
+                        <p *ngIf="codSeguridad?.errors.maxlength">Debe tener máximo 4 caracteres</p>
+                    </div>
+                    <h4>Fecha de Expiracion: </h4> <input type="month" formControlName= "fechaExp" class="form-control" >
+                    <div *ngIf="fechaExp?.invalid && (fechaExp?.dirty || fechaExp?.touched)" class="alert alert-danger">
+                        <p *ngIf="fechaExp?.errors.required">Por favor ingresar un fecha</p>
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-9"></div>
+                        <div class="col-sm-3"><h5 for=""> {{Ontotal()}} Total a pagar {{total | currency : 'CLP'}} </h5></div>
+                    </div>
+                    
+                    <br>
+                    <br>
+                    <div class="row">
+                        <button type="submit " class="btn btn-success">Pagar</button>
+                        
+                    </div>
+    
+            </form>
+        </div>
+    </div>
+
+</div>

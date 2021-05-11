@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="inicio">Inicio</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link" href="productos/">Productos</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="contacto">Contacto</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle large " href="pagar" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                      Carrito
+                    </a>
+                    <ul  class="dropdown-menu " aria-labelledby="navbarDropdown" style="width: auto;"  >
+                        <table class="table-primary " *ngIf="carrito.length> 0; else CarroVacio">
+                            <thead>
+                                <tr >
+                                    <th>Imagen</th>
+                                    <th>Nombre</th>
+                                    <th>Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let x of carrito" scope="row" >
+                                    <td><img src="{{x.img}} " alt=""  class="img-fluid"></td>
+                                    <td>{{x.nombre}}</td>
+                                    <td>{{x.precio|currency:'CLP'}}</td>
+                                    <td><button class="btn btn-danger" (click) = "eliminar(x.codigo)"> Eliminar</button></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <ng-template #CarroVacio>
+                            <p>El carrito está vacio</p>
+                            
+                        </ng-template>
+                        <p *ngIf="carrito.length> 0" >
+                              <span> <b> {{Ontotal()}} Total : {{total|currency:'CLP'}} </b> </span>
+                        </p>
+                        <button class="btn btn-success " *ngIf="carrito.length> 0" (click)= "pagar(carrito)">Pagar</button>
+                    </ul>
+                  </li>
+
+        
+                </ul>
+
+              </div>
+            </div>
+          </nav>
+    </div>
+    <div class="row">
+        <router-outlet></router-outlet>
+    </div>
+</div>

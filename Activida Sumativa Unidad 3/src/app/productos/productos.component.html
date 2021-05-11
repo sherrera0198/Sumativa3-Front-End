@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+        <h1>Inventario de productos</h1>
+    </div>
+    <div class="row"> 
+        <div class="form-group">
+            <form [formGroup] = "formulario" (ngSubmit)="agregar()">
+                <h4>Código: </h4> <input type="number" formControlName= "codigo" class="form-control" >
+                <div *ngIf="codigo?.invalid && (codigo?.dirty || codigo?.touched)" class="alert alert-danger">
+                    <p *ngIf="codigo?.errors?.required">Por favor ingresar un Código</p>
+                    <p *ngIf="codigo?.errors?.minlength">Debe tener mínimo 3 caracteres</p>
+                    <p *ngIf="codigo?.errors?.maxlength">Debe tener máximo 10 caracteres</p>
+                    </div>
+                    <h4>Nombre: </h4> <input type="text" formControlName= "nombre" class="form-control" >
+                    <div *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)" class="alert alert-danger">
+                        <p *ngIf="nombre?.errors?.required">Por favor ingresar un Nombre</p>
+                        <p *ngIf="nombre?.errors?.minlength">Debe tener mínimo 3 caracteres</p>
+                        <p *ngIf="nombre?.errors?.maxlength">Debe tener máximo 50 caracteres</p>
+                    </div>
+                    <h4>Precio: </h4> <input type="number" formControlName= "precio" class="form-control" >
+                    <div *ngIf="precio?.invalid && (precio?.dirty || precio?.touched)" class="alert alert-danger">
+                        <p *ngIf="precio?.errors?.required">Por favor ingresar un Precio</p>
+                        <p *ngIf="precio?.errors?.minlength">Debe tener mínimo 3 caracteres</p>
+                        <p *ngIf="precio?.errors?.maxlength">Debe tener máximo 10 caracteres</p>
+                    </div>
+                    <h4>Descripción: </h4> <input type="text" formControlName= "descripcion" class="form-control" >
+                    <div *ngIf="descripcion?.invalid && (descripcion?.dirty || descripcion?.touched)" class="alert alert-danger">
+                        <p *ngIf="descripcion?.errors?.required">Por favor ingresar un Nombre</p>
+                        <p *ngIf="descripcion?.errors?.minlength">Debe tener mínimo 3 caracteres</p>
+                        <p *ngIf="descripcion?.errors?.maxlength">Debe tener máximo 50 caracteres</p>
+                    </div>
+                    <br>
+                    <br>
+                    <button type="submit " class="btn btn-success">Guardar</button>
+            </form>
+        </div>
+    </div>
+    <div class="row"> 
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let producto of listaProductos">
+                    <th>{{producto.codigo}} </th>
+                    <th>{{producto.nombre}} </th>
+                    <th>{{producto.precio}} </th>
+                    <th>{{producto.descripcion}} </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

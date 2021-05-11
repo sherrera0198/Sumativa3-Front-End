@@ -1,0 +1,30 @@
+
+    <div class="container">
+      <div class="row"> 
+        <br>
+        <span><form class="d-flex" >
+          <input class="form-control me-2 border border-primary"  type="search" placeholder="¿Buscas algún producto específico?" aria-label="Search" name="search" [(ngModel)]= "searchText" autocomplete="off"  >
+        <br>
+        </form></span>
+      </div>
+        <div class="card mb-3"  *ngFor = "let producto of ListaProductos | filter:searchText |paginate: { itemsPerPage: 3, currentPage: page } ">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src= "{{producto.img}} " alt=""   class="img-fluid">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{producto.nombre}} </h5>
+                  <p class="card-text"> {{producto.precio|currency:'CLP'}} </p>
+                  <p class="card-text"><small class="text-muted">{{producto.descripcion}} </small></p>
+                  <button class="btn btn-success"  (click)="AgregarCarro(producto)" >Agregar </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+    </div>
+
+
+

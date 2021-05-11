@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-1"> </div>
+        <div class="col-sm-11">
+            <h1>Carrito de compras</h1>
+        </div>
+    </div>
+    
+</div>
+<div class="container">
+    <div class="row">
+        <table class="table" *ngIf="carrito.length> 0 ;else CarroVacio" >
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Imagen</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let x of carrito ">
+                    <td> {{x.nombre}} </td>
+                    <td> <img src="{{x.img}}" alt=""  class="img-fluid" style="max-width: 300px;"> </td>
+                    <td> {{x.precio | currency:'CLP'}} </td>
+                    <td><div class="row"> <button class="btn btn-danger" (click) = "eliminar(x.codigo)"> Eliminar</button> </div></td>
+                </tr>
+                <tr>
+                    <th colspan="2"> Total :</th>
+                    <th>{{Ontotal()}} {{total|currency:'CLP'}} </th>
+                </tr>
+            </tbody>
+        </table>
+
+        <ng-template #CarroVacio>
+            <br>
+            <p>El carrito está vacio</p>
+            
+        </ng-template>
+    </div>
+    <div class="row">
+        <button class="btn btn-success" (click)="pagar()" >Pagar</button>
+    </div>
+</div>
